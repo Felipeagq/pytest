@@ -7,6 +7,7 @@ Run tests in a module : ```pytest test_mod.py```
 Run tests in a directory :```pytest testing/```
 
 Run a specific test in a file : ```pytest test_mod.py::test_func```
+
 Run a specific test in a class of a file : ```pytest test_mod.py::TestClass::test_method```  
 
 ## assert
