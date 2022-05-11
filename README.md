@@ -23,6 +23,56 @@ def test_always_fails():
     assert False
 ````
 
+## Marks
+Podemos colocarle marcas a nuestras funciones de testeo para identificar las diferentes funciones y correr solamente ciertos test que tengan ciertan marcas.
+```python
+@pytest.mark.some_tag
+def test_of_function():
+    assert function() == expected_result
+```
+Para correr las marcas debemos escribir en la consola.
+````bash=
+pytest -m some_tag -vv
+
+python -m pytest -m some_tag -vv
+````
+
+## -k selection
+Este es un parametros al momento de correr el modulo de pytest, que nos permite filtrar y correr los test, en donde nombre aparezca el texto indicado.
+```bash
+# correrá todas las funciones que en su nombre de testeo contenga "persona"
+pytest -k persona -vv
+```
+
+
+## Parametrize
+Podemos definir varios parametros para realizar diferentes test sin tener que repetir la escritura de estos mismos, usando parametros y la misma función.
+
+```python
+# Creamos la función
+def func(x):
+    return x+1
+
+# Creamos nuestros parametros, que son:
+# los parametros de mi función a testear
+# y
+# Un parametros que es el resultado esperado 
+@pytest.mark.parametrize("a,expected_result",
+    [
+        (1,2),
+        (2,3),
+        (3,4)
+    ]
+)
+
+# Se crea la función de testeo 
+# con los parametros definidos 
+def test_func(a,expected_result):
+    assert func(a) == expected_result
+```
+
+
+
 
 ## @pytest.fixture
 Este decorador nos permite recibir una función como parametro de nuestra función de testing, nuestra función necesariamente debe retornar un valor o objeto.
@@ -52,6 +102,24 @@ def get_name(persona:Persona):
 def test_get_nme_persona(crear_persona):
     assert get_name(crear_persona) == "felipe"
 ```
+
+
+## @pytest.fixture (después del test)
+También podemos usar el @pytest.fixture después del testing.
+```python
+@pytest.fixture
+def make_settings():
+    # executed before test
+    default_environment = settings.environment
+    settings.environment = "x"
+
+    yield 
+    # executed after test
+    settings.environment = default_environment
+```
+
+## Fixtures: pytest-mock
+
 
 
 ## source
