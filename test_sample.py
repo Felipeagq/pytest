@@ -15,6 +15,7 @@ def test_answer3():
     assert func(3)==4
 
 
+##
 
 class Persona:
     def __init__(self,name,edad,dinero):
@@ -23,7 +24,6 @@ class Persona:
         self.dinero = dinero + 20000
 
 
-##
 
 @pytest.fixture
 def crear_persona():

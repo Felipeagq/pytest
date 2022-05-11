@@ -25,7 +25,33 @@ def test_always_fails():
 
 
 ## @pytest.fixture
+Este decorador nos permite recibir una función como parametro de nuestra función de testing, nuestra función necesariamente debe retornar un valor o objeto.
+- Primero creamos una función, en este caso retornará la creación de un objeto.
+```python
+class Persona:
+    def __init__(self,name,edad,dinero):
+        self.name = name
+        self.edad = edad + 5
+        self.dinero = dinero + 20000
 
+@pytest.fixture
+def crear_persona():
+    return Persona(
+        name="felipe",
+        edad=22,
+        dinero=2000
+    )
+```
+- Luego tenemos la función de nuestro codigo que queremos examinar su comportamiento y testearla.
+```python
+def get_name(persona:Persona):
+    return persona.name
+```
+- Luego creamos la función de testing y le pasamos como parametro nuestra función que definimos en nuestro fixture.
+```python 
+def test_get_nme_persona(crear_persona):
+    assert get_name(crear_persona) == "felipe"
+```
 
 
 ## source
