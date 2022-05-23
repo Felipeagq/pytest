@@ -31,10 +31,13 @@ def test_of_function():
     assert function() == expected_result
 ```
 Para correr las marcas debemos escribir en la consola.
-````bash=
+````bash
 pytest -m some_tag -vv
 
 python -m pytest -m some_tag -vv
+
+# Se pueden hacer operaciones
+python -m pytest -m "some_tag and not other_tag" -vv
 ````
 
 ## -k selection
@@ -118,8 +121,14 @@ def make_settings():
     settings.environment = default_environment
 ```
 
-## Fixtures: pytest-mock
+## smoke test
 
+## Integration tests
+
+## pytest-env
+
+## python monkeypatch
+cambiar, introducir o quitar variables de entorno
 
 
 ## source

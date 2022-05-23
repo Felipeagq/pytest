@@ -70,7 +70,7 @@ def make_a_dict(a,b):
     }
 
 def test_some_calculation():
-    assert some_calculation(1,2) == 3
+    assert some_calculation(1,4) == 3, "mal resultado"
 
 # def test_make_a_dict(mocker):
 #     mocker.patch
